@@ -19,6 +19,7 @@ int mood = 0;         // The current mood of the animal
 
 int standbyBright = 128;      // How bright the animal should be in standby mood
 long standbyTimer = 0;        // Timer to keep track of standby animation cycle
+long standbySpeed = 10;       // How quickly should the breathing information change
 boolean standbyDir = false;   // Direction of fading for standby breathing
 
 int happyMax = 255;           // How bright the animal should be in happy mood
@@ -50,7 +51,7 @@ void standby(){
     if(standbyDir){standbyBright++;}            // If direction is true, increase brightness
     else{standbyBright--;}                      // Otherwise, decrease brightness
     
-    if(standbyBright <= 100 || standbyBright >= 255){standbyDir = !standbyDir;} // If brightness is at either extreme, reverse direction
+    if(standbyBright <= 100 || standbyBright >= 200){standbyDir = !standbyDir;} // If brightness is at either extreme, reverse direction
     analogWrite(greenLED, standbyBright);                                       // Update the Green LED
     standbyTimer = millis();                                                    // Update the Timer
   }
